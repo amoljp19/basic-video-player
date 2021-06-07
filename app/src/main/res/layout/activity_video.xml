@@ -85,7 +85,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:mediaPlayer="@{mediaPlayer}"
-            app:uriString="@{viewmodel.uriString}" />
+            app:viewModel="@{viewmodel}" />
 
         <ProgressBar
             android:id="@+id/progress_bar"

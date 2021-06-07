@@ -62,12 +62,12 @@ object BindingAdapters {
 
 
     @JvmStatic
-    @BindingAdapter("mediaPlayer", "uriString", "context")
-    fun bindSurfaceHolder(videoView: VideoView, mediaPlayer: MediaPlayer, uriString: String, context: Context) {
+    @BindingAdapter("mediaPlayer", "viewModel", "context")
+    fun bindSurfaceHolder(videoView: VideoView, mediaPlayer: MediaPlayer, videoViewModel: VideoViewModel, context: Context) {
         videoView.holder.addCallback(object : Callback {
             override fun surfaceCreated(holder: SurfaceHolder?) {
                 mediaPlayer.apply {
-                    setDataSource(context.applicationContext, Uri.parse(uriString))
+                    setDataSource(context.applicationContext, Uri.parse(videoViewModel.uriString.value))
                     //setDataSource(applicationContext, selectedVideoUri)
 
                     //setDataSource(URL)

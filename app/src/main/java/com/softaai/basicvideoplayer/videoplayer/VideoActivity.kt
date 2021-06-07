@@ -24,8 +24,6 @@ class VideoActivity : AppCompatActivity() {
 
     private val videoViewModel: VideoViewModel by viewModels()
 
-    private lateinit var selectedVideoUri: Uri
-
     companion object {
         const val GET_VIDEO = 123
     }
@@ -42,7 +40,7 @@ class VideoActivity : AppCompatActivity() {
 
         videoViewModel.isPlayButtonEnabled.value = true
         videoViewModel.isProgressBarVisible.value = false
-        videoViewModel.uriString.value = "android.resource://$packageName/raw/video"
+        //videoViewModel.uriString.value = "android.resource://$packageName/raw/video"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -73,16 +71,9 @@ class VideoActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == GET_VIDEO) {
-                selectedVideoUri = data?.data!!
-                //binding.videoView.holder.addCallback(this)
+                videoViewModel.uriString.value = data?.data!!.toString()
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //handler.removeCallbacks(runnable)
-        binding.mediaPlayer!!.release()
     }
 
 }
