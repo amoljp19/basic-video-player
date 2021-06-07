@@ -22,6 +22,7 @@
         android:layout_height="match_parent"
         tools:context=".videoplayer.VideoActivity">
 
+
         <ImageButton
             android:id="@+id/play_button"
             android:layout_width="wrap_content"

@@ -44,7 +44,9 @@ class VideoActivity : AppCompatActivity(){
         videoViewModel.isPlayButtonEnabled.value = true
         videoViewModel.isProgressBarVisible.value = false
 
-        videoViewModel.uriString.value = "android.resource://$packageName/raw/video"
+        /* comment out this to test "select file" option from menu
+         else for faster test use raw folder video file */
+       // videoViewModel.uriString.value = "android.resource://$packageName/raw/video"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
