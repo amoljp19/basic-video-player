@@ -40,7 +40,8 @@ class VideoActivity : AppCompatActivity() {
 
         videoViewModel.isPlayButtonEnabled.value = true
         videoViewModel.isProgressBarVisible.value = false
-        //videoViewModel.uriString.value = "android.resource://$packageName/raw/video"
+
+        videoViewModel.uriString.value = "android.resource://$packageName/raw/video"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

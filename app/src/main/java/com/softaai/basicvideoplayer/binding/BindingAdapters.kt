@@ -33,19 +33,35 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("mediaPlayer")
-    fun bindMediaPlayer(imageView: ImageView, mediaPlayer: MediaPlayer) {
+    @BindingAdapter("playPauseImageView")
+    fun bindPlayPauseImageView(playPauseImageView: ImageView, mediaPlayer: MediaPlayer) {
 
-        imageView.setOnClickListener {
+        playPauseImageView.setOnClickListener {
             if (mediaPlayer.isPlaying) {
                 mediaPlayer.pause()
-                imageView.setImageResource(R.drawable.ic_media_play)
+                playPauseImageView.setImageResource(R.drawable.ic_media_play)
             } else {
                 mediaPlayer.start()
-                imageView.setImageResource(R.drawable.ic_media_pause)
+                playPauseImageView.setImageResource(R.drawable.ic_media_pause)
             }
         }
+    }
 
+
+    @JvmStatic
+    @BindingAdapter("playStopImageView")
+    fun bindPlayStopImageView(playStopImageView: ImageView, mediaPlayer: MediaPlayer) {
+
+        playStopImageView.setOnClickListener {
+            if (!mediaPlayer.isPlaying) {
+                mediaPlayer.start()
+                playStopImageView.setImageResource(com.softaai.basicvideoplayer.R.mipmap.ic_media_stop)
+            } else {
+                mediaPlayer.pause()
+                mediaPlayer.seekTo(0)
+                playStopImageView.setImageResource(R.drawable.ic_media_play)
+            }
+        }
     }
 
     @JvmStatic

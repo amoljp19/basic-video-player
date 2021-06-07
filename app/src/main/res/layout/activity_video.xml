@@ -32,9 +32,23 @@
             android:visibility="@{viewmodel.isPlayButtonEnabled ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.3"
             app:layout_constraintStart_toStartOf="parent"
-            app:mediaPlayer="@{mediaPlayer}" />
+            app:playPauseImageView="@{mediaPlayer}" />
+
+        <ImageButton
+            android:id="@+id/stop_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/ic_media_stop"
+            android:contentDescription="@string/image_stop_button_desc"
+            android:visibility="@{viewmodel.isPlayButtonEnabled ? View.VISIBLE : View.GONE}"
+            app:playStopImageView="@{mediaPlayer}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <SeekBar
             android:id="@+id/seek_bar"
@@ -97,6 +111,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:visibility="@{viewmodel.isProgressBarVisible}" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
