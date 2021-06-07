@@ -1,7 +1,9 @@
 package com.softaai.basicvideoplayer.binding
 
 import android.R
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Handler
@@ -116,6 +118,20 @@ object BindingAdapters {
             viewModel.isProgressBarVisible.value = false
             viewModel.isPlayButtonEnabled.value = true
 
+            //Show Dialog
+            val alertDialogBuilder = AlertDialog.Builder(seekBar.context)
+            alertDialogBuilder.setTitle("Paused")
+            alertDialogBuilder.setMessage("Still you want to play this video ")
+            alertDialogBuilder.setPositiveButton("Yes", object : DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    if(!mediaPlayer.isPlaying){
+                        mediaPlayer.start()
+                        dialog?.dismiss()
+                    }
+                }
+            })
+
+            val alertDialog = alertDialogBuilder.create()
 
             // update
             handler = Handler(Looper.getMainLooper())
@@ -123,10 +139,16 @@ object BindingAdapters {
                 val currentSeconds = mediaPlayer.currentPosition / 1000
                 viewModel.textProgress.value = timeInString(currentSeconds)
                 seekBar.progress = currentSeconds
-                handler.postDelayed(runnbale, seconds.toLong())
+                if((currentSeconds > 0) && (currentSeconds % 60 == 0)){
+                     if(mediaPlayer.isPlaying){
+                         mediaPlayer.pause()
+                         alertDialog.show()
+                     }
+                }
+                handler.postDelayed(runnbale, 1000)
             }
 
-            handler.postDelayed(runnbale, seconds.toLong())
+            handler.postDelayed(runnbale, 1000)
 
         }
 
