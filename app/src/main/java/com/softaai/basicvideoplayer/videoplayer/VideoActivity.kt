@@ -2,6 +2,7 @@ package com.softaai.basicvideoplayer.videoplayer
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
@@ -10,15 +11,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import com.softaai.basicvideoplayer.R
 import com.softaai.basicvideoplayer.databinding.ActivityVideoBinding
 
 @RequiresApi(Build.VERSION_CODES.O)
-class VideoActivity : AppCompatActivity() {
+class VideoActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityVideoBinding
 
@@ -73,6 +76,18 @@ class VideoActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == GET_VIDEO) {
                 videoViewModel.uriString.value = data?.data!!.toString()
+            }
+        }
+    }
+
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig != null) {
+            if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                binding.mediaPlayer?.pause()
+            } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                binding.mediaPlayer?.start()
             }
         }
     }

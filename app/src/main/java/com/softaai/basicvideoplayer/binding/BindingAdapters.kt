@@ -4,6 +4,7 @@ import android.R
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Handler
@@ -11,11 +12,8 @@ import android.os.Looper
 import android.view.SurfaceHolder
 import android.view.SurfaceHolder.Callback
 import android.view.View
-import android.widget.ImageView
-import android.widget.SeekBar
+import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
-import android.widget.VideoView
 import androidx.databinding.BindingAdapter
 import com.softaai.basicvideoplayer.videoplayer.VideoViewModel
 
@@ -101,6 +99,7 @@ object BindingAdapters {
             }
 
         })
+
     }
 
 
@@ -149,7 +148,6 @@ object BindingAdapters {
             }
 
             handler.postDelayed(runnbale, 1000)
-
         }
 
 
